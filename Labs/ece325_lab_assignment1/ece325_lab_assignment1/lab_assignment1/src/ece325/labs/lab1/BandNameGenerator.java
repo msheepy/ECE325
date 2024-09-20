@@ -24,14 +24,14 @@ public class BandNameGenerator {
 	 * Load the adjectives file and initialize that part of the generator.
 	 */
 	public void loadAdjectives() {
-		adjectives = loadTxt(adjectivesFile);
+		adjectives = loadTxt(adjectivesFile); //Use load txt porvided to load list of adjectives
 	}
 	
 	/**
 	 * Load the nouns file and initialize that part of the generator.
 	 */
 	public void loadNouns() {
-		nouns = loadTxt(nounsFile);
+		nouns = loadTxt(nounsFile); //Use load txt porvided to load list of nouns
 	}
 			
 	/**
@@ -43,8 +43,8 @@ public class BandNameGenerator {
 	 * @return
 	 */
 	public String capitalizeFirst(String s) {
-		String first = s.substring(0,1);
-		String newS = first.toUpperCase() + s.substring(1,s.length());
+		String first = s.substring(0,1); //isolate first letter
+		String newS = first.toUpperCase() + s.substring(1,s.length()); //capitalize and add rest of word back
 
 		return newS;
 	}
@@ -58,22 +58,25 @@ public class BandNameGenerator {
 	public String generateName() {
 		int a = 0;
 		for(String s : adjectives){
-			a++;
+			a++; //count number of adjectives
 		}
 
 		int n = 0;
 		for(String s : nouns){
-			n++;
+			n++; //count number of nouns
 		}
 
+		//Generate random indexes to find random words in adjective and noun lists
 		int ind1 = (int)(Math.random()*a);
 		int ind2 = (int)(Math.random()*a);
 		int ind3 = (int)(Math.random()*n);
 
-		String first = capitalizeFirst(adjectives[ind1]);
+		//Capitalize first letter of all words
+		String first = capitalizeFirst(adjectives[ind1]); 
 		String second = capitalizeFirst(adjectives[ind2]);
 		String third = capitalizeFirst(nouns[ind3]);
 
+		//Format output
 		String name = first + " " + second + " " + third;
 		return name;
 	}
@@ -139,17 +142,14 @@ public class BandNameGenerator {
 	}
 	
 	public static void main(String[] args) {
-		// create a BandNameGenerator and initialize it
-		BandNameGenerator gen = new BandNameGenerator("Labs\\ece325_lab_assignment1\\ece325_lab_assignment1\\lab_assignment1\\adjectives.txt", "Labs\\ece325_lab_assignment1\\ece325_lab_assignment1\\lab_assignment1\\nouns.txt");
+		//Uses the address of adjective.txt and nouns.txt required for it to run in eclipse, 
+		//this may not run with this address in the zip file I submittes
+		BandNameGenerator gen = new BandNameGenerator("/ece325_lab_assignment1/lab_assignment1/adjectives.txt", "/ece325_lab_assignment1/lab_assignment1/nouns.txt");
 		gen.loadNouns();
 		gen.loadAdjectives();
+		//prints 20 band names
 		for (int i = 0; i < 20; i ++){
 			System.out.println(gen.generateName());
-		}
-			
-		// generate and print 20 names for your band
-		
-		
+		}	
 	}
-
 }
