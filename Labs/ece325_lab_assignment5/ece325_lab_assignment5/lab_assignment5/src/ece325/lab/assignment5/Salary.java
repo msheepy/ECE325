@@ -33,7 +33,7 @@ public class Salary {
 		if(snacksAmount > salary){
 			throw new IllegalArgumentException("Snacks cannot exceed salary");
 		}
-		return (salary - snacksAmount) * (1+(bonus/100));
+		return (salary - snacksAmount) * (1+((double)bonus/100));
 	}
 
 	public static void main(String[] args) {
